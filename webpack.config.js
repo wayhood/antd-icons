@@ -42,6 +42,16 @@ const babelConfig = {
   ],
 }
 
+const ENV = process.env.NODE_ENV
+const isProd = ENV === 'production'
+
+const optimization = isProd
+  ? {
+      minimize: true,
+      minimizer: [new CssMinimizerPlugin({}), new TerserWebpackPlugin()],
+    }
+  : {}
+
 module.exports = {
   mode: 'production', // production|development
   entry: './src/main.js',
@@ -119,24 +129,12 @@ module.exports = {
     },
   },
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   template: 'public/index.html',
-    //   filename: 'index.html',
-    //   scriptLoading: 'blocking',
-    //   inject: 'head',
-    // }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       // 类似 webpackOptions.output里面的配置 可以忽略
       filename: 'antd-icons.css',
       chunkFilename: '[id].css',
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [{ from: resolve('src/lib'), to: 'lib' }],
-    // }),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [new CssMinimizerPlugin({  }), new TerserWebpackPlugin({  })],
-  },
+  optimization: optimization,
 }

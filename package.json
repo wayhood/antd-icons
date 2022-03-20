@@ -1,11 +1,11 @@
 {
-    "name": "pack-first-library",
+    "name": "ant-design-vue-icons",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "src/main.js",
     "license": "MIT",
     "scripts": {
-        "dev": "webpack --progress --mode=development --watch",
-        "build": "webpack --progress --mode=production"
+        "dev": "NODE_ENV=development webpack --progress --watch",
+        "build": "NODE_ENV=production webpack --progress"
     },
     "dependencies": {
         "@vue/compiler-sfc": ">=3.1.0",
