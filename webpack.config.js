@@ -53,7 +53,7 @@ const optimization = isProd
   : {}
 
 module.exports = {
-  mode: 'production', // production|development
+  mode: isProd ? 'production' : 'development',
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
